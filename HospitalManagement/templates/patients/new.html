@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Add Patient{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>Add New Patient</h2>
+
+    <form
+        method="POST"
+        action="{{ url_for('patients.create_patient') }}"
+    >
+
+        <div class="form-group">
+
+            <label for="name">
+                Name:
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter patient name"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="age">
+                Age:
+            </label>
+
+            <input
+                type="number"
+                id="age"
+                name="age"
+                placeholder="Enter patient age"
+                min="1"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="gender">
+                Gender:
+            </label>
+
+            <select
+                id="gender"
+                name="gender"
+                required
+            >
+
+                <option value="">
+                    Select Gender
+                </option>
+
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Female">
+                    Female
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="contact">
+                Contact:
+            </label>
+
+            <input
+                type="text"
+                id="contact"
+                name="contact"
+                placeholder="Enter contact number"
+                required
+            >
+
+        </div>
+
+
+        <div class="btn-container">
+
+            <button type="submit">
+                Add Patient
+            </button>
+
+        </div>
+
+    </form>
+
+    <div class="action-links">
+
+        <a href="{{ url_for('patients.get_patients') }}">
+            Back to Patients
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

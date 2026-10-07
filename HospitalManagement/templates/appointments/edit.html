@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Appointment{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>Edit Appointment</h2>
+
+    <form
+        method="POST"
+        action="{{ url_for('appointments.update_appointment', id=appointment.id) }}"
+    >
+
+        <input
+            type="hidden"
+            name="_method"
+            value="PUT"
+        >
+
+
+        <div class="form-group">
+
+            <label for="patient_id">
+                Patient:
+            </label>
+
+            <select
+                id="patient_id"
+                name="patient_id"
+                required
+            >
+
+                {% for patient in patients %}
+
+                <option
+                    value="{{ patient.id }}"
+                    {% if patient.id == appointment.patient_id %}
+                        selected
+                    {% endif %}
+                >
+                    {{ patient.name }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="doctor_id">
+                Doctor:
+            </label>
+
+            <select
+                id="doctor_id"
+                name="doctor_id"
+                required
+            >
+
+                {% for doctor in doctors %}
+
+                <option
+                    value="{{ doctor.id }}"
+                    {% if doctor.id == appointment.doctor_id %}
+                        selected
+                    {% endif %}
+                >
+                    {{ doctor.name }} - {{ doctor.specialization }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="date">
+                Appointment Date:
+            </label>
+
+            <input
+                type="date"
+                id="date"
+                name="date"
+                value="{{ appointment.date }}"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="diagnosis">
+                Diagnosis:
+            </label>
+
+            <input
+                type="text"
+                id="diagnosis"
+                name="diagnosis"
+                value="{{ appointment.diagnosis }}"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="status">
+                Status:
+            </label>
+
+            <select
+                id="status"
+                name="status"
+                required
+            >
+
+                <option
+                    value="Under Treatment"
+                    {% if appointment.status == "Under Treatment" %}
+                        selected
+                    {% endif %}
+                >
+                    Under Treatment
+                </option>
+
+                <option
+                    value="Recovered"
+                    {% if appointment.status == "Recovered" %}
+                        selected
+                    {% endif %}
+                >
+                    Recovered
+                </option>
+
+                <option
+                    value="Critical"
+                    {% if appointment.status == "Critical" %}
+                        selected
+                    {% endif %}
+                >
+                    Critical
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="btn-container">
+
+            <button type="submit">
+                Update Appointment
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <div class="action-links">
+
+        <a
+            href="{{ url_for('appointments.get_appointment', id=appointment.id) }}"
+        >
+            Cancel
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

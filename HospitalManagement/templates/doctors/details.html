@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Doctor Details{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>Doctor Details</h2>
+
+    <div class="form-group">
+
+        <strong>ID:</strong>
+        {{ doctor.id }}
+
+    </div>
+
+    <div class="form-group">
+
+        <strong>Name:</strong>
+        {{ doctor.name }}
+
+    </div>
+
+    <div class="form-group">
+
+        <strong>Specialization:</strong>
+        {{ doctor.specialization }}
+
+    </div>
+
+
+    <div class="action-links">
+
+        <a
+            href="{{ url_for('doctors.edit_doctor', id=doctor.id) }}"
+        >
+            Edit Doctor
+        </a>
+
+
+        <form
+            method="POST"
+            action="{{ url_for('doctors.delete_doctor', id=doctor.id) }}"
+            style="display: inline;"
+            onsubmit="return confirm('Are you sure you want to delete this doctor?');"
+        >
+
+            <input
+                type="hidden"
+                name="_method"
+                value="DELETE"
+            >
+
+            <button type="submit">
+                Delete Doctor
+            </button>
+
+        </form>
+
+
+        <a
+            href="{{ url_for('doctors.get_doctors') }}"
+        >
+            Back to Doctors
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

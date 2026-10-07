@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Patient Details{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>Patient Details</h2>
+
+    <div class="form-group">
+
+        <strong>ID:</strong>
+        {{ patient.id }}
+
+    </div>
+
+    <div class="form-group">
+
+        <strong>Name:</strong>
+        {{ patient.name }}
+
+    </div>
+
+    <div class="form-group">
+
+        <strong>Age:</strong>
+        {{ patient.age }}
+
+    </div>
+
+    <div class="form-group">
+
+        <strong>Gender:</strong>
+        {{ patient.gender }}
+
+    </div>
+
+    <div class="form-group">
+
+        <strong>Contact:</strong>
+        {{ patient.contact }}
+
+    </div>
+
+
+    <div class="action-links">
+
+        <a
+            href="{{ url_for('patients.edit_patient', id=patient.id) }}"
+        >
+            Edit Patient
+        </a>
+
+
+        <form
+            method="POST"
+            action="{{ url_for('patients.delete_patient', id=patient.id) }}"
+            style="display: inline;"
+            onsubmit="return confirm('Are you sure you want to delete this patient?');"
+        >
+
+            <button type="submit">
+                Delete Patient
+            </button>
+
+        </form>
+
+
+        <a
+            href="{{ url_for('patients.get_patients') }}"
+        >
+            Back to Patients
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

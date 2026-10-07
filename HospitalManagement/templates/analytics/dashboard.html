@@ -1,0 +1,443 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="analytics-header">
+
+    <h2>Hospital Analytics Dashboard</h2>
+
+    <p>
+        Hospital appointment and treatment analysis
+    </p>
+
+</div>
+
+
+<!-- Summary Cards -->
+
+<div class="analytics-summary">
+
+    <div class="summary-card">
+
+        <h3>Appointments</h3>
+
+        <div class="summary-value">
+
+            {{ analytics.appointment_trends
+               | map(attribute="count")
+               | sum }}
+
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <h3>Doctors</h3>
+
+        <div class="summary-value">
+
+            {{ analytics.doctor_performance | length }}
+
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <h3>Diagnoses</h3>
+
+        <div class="summary-value">
+
+            {{ analytics.common_diagnoses | length }}
+
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <h3>Status Types</h3>
+
+        <div class="summary-value">
+
+            {{ analytics.status_distribution | length }}
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Appointment Status -->
+
+<div class="analytics-card">
+
+    <h3>Appointment Status Distribution</h3>
+
+    <canvas
+        id="statusChart"
+        width="700"
+        height="350"
+    ></canvas>
+
+</div>
+
+
+<!-- Common Diagnoses -->
+
+<div class="analytics-card">
+
+    <h3>Most Common Diagnoses</h3>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Diagnosis</th>
+                <th>Number of Cases</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for item in analytics.common_diagnoses %}
+
+            <tr>
+
+                <td>
+                    {{ item.diagnosis }}
+                </td>
+
+                <td>
+                    {{ item.count }}
+                </td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+
+                <td colspan="2">
+                    No diagnosis data available.
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- Doctor Performance -->
+
+<div class="analytics-card">
+
+    <h3>Doctor Performance</h3>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Doctor</th>
+                <th>Patients Treated</th>
+                <th>Total Appointments</th>
+                <th>Recovered</th>
+                <th>Recovery Rate</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for doctor in analytics.doctor_performance %}
+
+            <tr>
+
+                <td>
+                    {{ doctor.doctor_name }}
+                </td>
+
+                <td>
+                    {{ doctor.patients_treated }}
+                </td>
+
+                <td>
+                    {{ doctor.total_appointments }}
+                </td>
+
+                <td>
+                    {{ doctor.recovered }}
+                </td>
+
+                <td>
+                    {{ doctor.recovery_rate }}%
+                </td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+
+                <td colspan="5">
+                    No doctor performance data available.
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- Average Recovery Time -->
+
+<div class="analytics-card">
+
+    <h3>Average Recovery Time</h3>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Diagnosis</th>
+                <th>Average Recovery Days</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for item in analytics.recovery_time %}
+
+            <tr>
+
+                <td>
+                    {{ item.diagnosis }}
+                </td>
+
+                <td>
+                    {{ item.average_recovery_days }}
+                </td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+
+                <td colspan="2">
+                    Recovery data is not available.
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- Appointment Trends -->
+
+<div class="analytics-card">
+
+    <h3>Appointment Trends</h3>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Date</th>
+                <th>Appointments</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for item in analytics.appointment_trends %}
+
+            <tr>
+
+                <td>
+                    {{ item.date }}
+                </td>
+
+                <td>
+                    {{ item.count }}
+                </td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+
+                <td colspan="2">
+                    No appointment trend data available.
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- Reports -->
+
+<div class="analytics-card report-section">
+
+    <h3>Reports</h3>
+
+    <p>
+        Download hospital analytics reports.
+    </p>
+
+    <div class="report-buttons">
+
+        <a
+            href="{{ url_for('analytics.export_csv') }}"
+            class="analytics-button"
+        >
+            Export CSV
+        </a>
+
+        <a
+            href="{{ url_for('analytics.export_excel') }}"
+            class="analytics-button"
+        >
+            Export Excel
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- CSV Upload -->
+
+<div class="analytics-card upload-section">
+
+    <h3>Upload Appointment CSV</h3>
+
+    <p>
+        Upload a CSV file for analytics.
+    </p>
+
+    <form
+        method="POST"
+        action="{{ url_for('analytics.upload_csv') }}"
+        enctype="multipart/form-data"
+    >
+
+        <input
+            type="file"
+            name="file"
+            accept=".csv"
+            required
+        >
+
+        <button type="submit">
+            Upload CSV
+        </button>
+
+    </form>
+
+</div>
+
+
+<!-- Chart Data -->
+
+<script
+    id="status-data"
+    type="application/json"
+>
+    {{ analytics.status_distribution | tojson }}
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+const statusData = JSON.parse(
+    document.getElementById("status-data").textContent
+);
+
+const statusLabels = statusData.map(
+    item => item.status
+);
+
+const statusValues = statusData.map(
+    item => item.count
+);
+
+
+new Chart(
+    document.getElementById("statusChart"),
+    {
+        type: "bar",
+
+        data: {
+            labels: statusLabels,
+
+            datasets: [
+                {
+                    label: "Appointments",
+                    data: statusValues
+                }
+            ]
+        },
+
+        options: {
+            responsive: false,
+
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    }
+);
+
+</script>
+
+{% endblock %}

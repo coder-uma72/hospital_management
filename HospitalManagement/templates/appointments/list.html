@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Appointments{% endblock %}
+
+{% block content %}
+
+<h2>Appointments</h2>
+
+<a href="{{ url_for('appointments.new_appointment') }}">
+    Schedule New Appointment
+</a>
+
+<br><br>
+
+<table border="1">
+
+    <tr>
+        <th>ID</th>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Diagnosis</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for appointment in appointments %}
+
+    <tr>
+
+        <td>{{ appointment.id }}</td>
+
+        <td>
+            {{ appointment.patient.name }}
+        </td>
+
+        <td>
+            {{ appointment.doctor.name }}
+        </td>
+
+        <td>
+            {{ appointment.date }}
+        </td>
+
+        <td>
+            {{ appointment.diagnosis }}
+        </td>
+
+        <td>
+            {{ appointment.status }}
+        </td>
+
+        <td>
+
+            <a href="{{ url_for('appointments.get_appointment', id=appointment.id) }}">
+                View
+            </a>
+
+            |
+
+            <a href="{{ url_for('appointments.edit_appointment', id=appointment.id) }}">
+                Edit
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

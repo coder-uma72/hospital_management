@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+        {% block title %}
+        Hospital Management System
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <nav>
+
+        <a href="{{ url_for('patients.get_patients') }}">
+            Patients
+        </a>
+
+        <a href="{{ url_for('doctors.get_doctors') }}">
+            Doctors
+        </a>
+
+        <a href="{{ url_for('appointments.get_appointments') }}">
+            Appointments
+        </a>
+
+        <a href="{{ url_for('analytics.analytics_dashboard') }}">
+            Analytics
+        </a>
+
+        <form
+            method="POST"
+            action="{{ url_for('auth.logout') }}"
+        >
+
+            <button type="submit">
+                Logout
+            </button>
+
+        </form>
+
+    </nav>
+
+    <main>
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+</body>
+
+</html>

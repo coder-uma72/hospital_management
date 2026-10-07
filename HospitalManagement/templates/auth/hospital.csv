@@ -1,0 +1,11 @@
+patient_id,patient_name,doctor_id,doctor_name,date,diagnosis,status,recovery_date
+1,Ravi Kumar,1,Dr. Kumar,2026-10-01,Fever,Recovered,2026-10-05
+2,Priya Sharma,2,Dr. Priya,2026-10-02,Diabetes,Under Treatment,
+3,Anil Reddy,1,Dr. Kumar,2026-10-03,Viral Infection,Recovered,2026-10-07
+4,Sita Devi,3,Dr. Anitha,2026-10-03,Hypertension,Under Treatment,
+5,Kiran Rao,2,Dr. Priya,2026-10-04,Fever,Recovered,2026-10-08
+6,Lakshmi,3,Dr. Anitha,2026-10-05,Migraine,Critical,
+7,Rahul,1,Dr. Kumar,2026-10-06,Diabetes,Recovered,2026-10-10
+8,Meena,2,Dr. Priya,2026-10-06,Fever,Under Treatment,
+9,Arjun,3,Dr. Anitha,2026-10-07,Viral Infection,Recovered,2026-10-11
+10,Divya,1,Dr. Kumar,2026-10-07,Hypertension,Under Treatment,

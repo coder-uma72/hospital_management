@@ -1,0 +1,339 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+    color: #333;
+}
+
+/* Navigation */
+
+nav {
+    background-color: #1f4e79;
+    padding: 16px 30px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav form {
+    display: inline;
+}
+
+nav button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Main centered area */
+
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: 35px auto;
+}
+
+/* Headings */
+
+h2 {
+    color: #1f4e79;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+h3 {
+    color: #2f5f8f;
+}
+
+/* Cards */
+
+.card {
+    background-color: white;
+    width: 100%;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.card h2,
+.card h3 {
+    text-align: center;
+}
+
+/* Forms */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #1f4e79;
+}
+
+/* Buttons */
+
+button {
+    background-color: #1f4e79;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.btn-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Links */
+
+a {
+    color: #1f4e79;
+}
+
+.action-links {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Tables */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    margin: 20px auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+th,
+td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #1f4e79;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f7f9fc;
+}
+
+/* Analytics sections */
+
+.analytics-card {
+    background-color: white;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Chart */
+
+canvas {
+    display: block;
+    margin: 20px auto;
+    background-color: white;
+}
+
+/* Horizontal line */
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 30px 0;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    main {
+        width: 95%;
+    }
+
+    nav {
+        line-height: 2.5;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+}
+/* Action buttons */
+
+.action-links {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.action-links a {
+    display: inline-block;
+    background-color: #1f4e79;
+    color: white;
+    text-decoration: none;
+    padding: 9px 16px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.action-links a:hover {
+    opacity: 0.9;
+}
+/* Analytics Dashboard */
+
+.analytics-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.analytics-header p {
+    color: #666;
+}
+
+
+/* Summary cards */
+
+.analytics-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    background-color: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.summary-card h3 {
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.summary-value {
+    font-size: 30px;
+    font-weight: bold;
+    color: #1f4e79;
+    margin-top: 10px;
+}
+
+
+/* Analytics cards */
+
+.analytics-card {
+    background-color: white;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.analytics-card h3 {
+    text-align: center;
+    margin-top: 0;
+}
+
+
+/* Report buttons */
+
+.report-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.analytics-button {
+    display: inline-block;
+    background-color: #1f4e79;
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.analytics-button:hover {
+    opacity: 0.9;
+}
+
+
+/* Upload */
+
+.upload-section {
+    text-align: center;
+}
+
+.upload-section input[type="file"] {
+    width: auto;
+    margin: 15px;
+}
+
+
+/* Mobile analytics */
+
+@media (max-width: 800px) {
+
+    .analytics-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .analytics-summary {
+        grid-template-columns: 1fr;
+    }
+
+}
